@@ -19,7 +19,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @EnableJpaRepositories(
-        basePackages = "com.seabank.multidbdemo.repository.oracle", // Update to your package
+        basePackages = "com.seabank.multidbdemo.repository.oracle",
         entityManagerFactoryRef = "oracleEntityManagerFactory",
         transactionManagerRef = "oracleTransactionManager"
 )
@@ -39,7 +39,7 @@ public class OracleConfig {
             @Qualifier("oracleDataSource") DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
-        em.setPackagesToScan("com.seabank.multidbdemo.entity.oracle"); // Update to your entity package
+        em.setPackagesToScan("com.seabank.multidbdemo.entity.oracle");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
