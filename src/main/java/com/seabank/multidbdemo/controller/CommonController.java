@@ -1,8 +1,8 @@
 package com.seabank.multidbdemo.controller;
 
 import com.seabank.multidbdemo.entity.Transaction;
-import com.seabank.multidbdemo.entity.mysql.Family;
-import com.seabank.multidbdemo.entity.postgres.Equipment;
+import com.seabank.multidbdemo.entity.oracle.School;
+import com.seabank.multidbdemo.entity.postgres.Worker;
 import com.seabank.multidbdemo.service.DemoSaveService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,9 +21,9 @@ public class CommonController {
 
     @PostMapping("/init")
     public ResponseEntity<String> init(@RequestBody Transaction transaction) {
-        Family family = Family.builder().id(transaction.getFamilyId()).name(transaction.getName()).yob(transaction.getYob()).build();
-        Equipment equipment = Equipment.builder().id(transaction.getEquipmentId()).equipName(transaction.getEquipName()).usage(transaction.getUsage()).build();
-        demoSaveService.init(family, equipment);
+        School school = School.builder().id(transaction.getSchoolId()).name(transaction.getSchoolName()).type(transaction.getType()).enrollment(transaction.getEnrollment()).build();
+        Worker worker = Worker.builder().id(transaction.getWorkerId()).name(transaction.getWorkerName()).yob(transaction.getYob()).salary(transaction.getSalary()).build();
+        demoSaveService.init(school, worker);
         return ResponseEntity.ok("saved successfully");
     }
 }
